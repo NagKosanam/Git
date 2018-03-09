@@ -1,0 +1,6 @@
+Home website for practice
+---------------------------
+http://www.asmarterwaytolearn.com/js/index-of-exercises.html
+
+--------------------------------------------------------------
+http://www.asmarterwaytolearn.com/js/sample-chapter-1.html

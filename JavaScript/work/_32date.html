@@ -1,0 +1,14 @@
+<html><head><title>Date</title></head>
+<body>
+<script>
+ var now = new Date();
+ var doomsday = new Date("June 30, 2035");
+ var msToday = today.getTime();
+ var msDoomsday = doomsday.getTime();
+ var msDiff = msDoomsday - msToday;
+//
+ var dDiff = msDiff / (1000 * 60 * 60 * 24);
+ dDiff = Math.floor(dDiff);
+ alert(dDiff);
+
+</script></body></html>

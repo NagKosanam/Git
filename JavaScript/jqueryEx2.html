@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>UbiSoft Admin</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+$('#radio1').change(function() {
+ if($(this).is(":checked"))
+ $(".check1").prop('checked', false);
+$(".check1").attr("disabled", true);
+});
+$('#radio2').change(function() {
+$(".check1").attr("disabled", false);
+ if($(this).is(":checked"))
+$(".check1").prop('checked', true);
+else 
+$(".check1").prop('checked', false);
+});
+$('#radio3').change(function() {
+ if($(this).is(":checked"))
+$(".check1").attr("disabled", false);
+$(".check1").prop('checked', false);
+});
+$('#radio4').change(function() {
+ if($(this).is(":checked")) 
+$(".check2").prop('checked', true);
+});
+$('#radio5').change(function() {
+ if($(this).is(":checked")) 
+$(".check2").prop('checked', false);
+});
+});
+</script>
+</head>
+<body>
+   
+        <div id="Header">
+            <h1 align = "center">UbiSoft Admin</h1>
+        </div>
+        <form>
+        <table align = "center" width =350 height = 200 bgcolor= gray>
+        <tr>
+	    	<td>
+		    	<fieldset id = group1>
+		    		<input type="radio" id = "user" name="group1" value="User"> User
+					<input type="radio" id = "group" name="group1" value="Group"> Group
+				</fieldset>
+			</td>
+    	</tr>
+    	<tr>
+    	<TD class = "select"> 
+			        <select>        
+			                <option value="user/group">User/Group</option>
+			                <option value="conferra">conferra</option>
+			                <option value="conferrasoft">conferrasoft</option>
+			                <option value="aws">aws</option>
+			        </select>
+		        <TD ALIGN="center"></TD>  
+    	</TR>
+       	<TR>
+		        <TD class = "select"> 
+			        <select>        
+			                <option value="Select Schema">SchemaName</option>
+			                <option value="games">games</option>
+			                <option value="ncis">ncis</option>
+			                <option value="pop_runner">pop_runner</option>
+			        </select>
+		        <TD ALIGN="center"></TD>  
+    	</TR>
+    	<tr>
+	    	<td>
+		    	<fieldset id = group2>
+		    		<input type="radio" name="group2" value="none" id="radio1"> none
+					<input type="radio" name="group2" value="All Tables" id="radio2"> All Tables
+					<input type="radio" name="group2" value="Selected" id="radio3"> Selected
+				</fieldset>
+			</td>
+    	</tr>
+    	<tr><td align = "center"><input type="checkbox" name="checkbox" value="on" class="check1"> table 1</td></tr>
+		<tr><td align = "center"><input type="checkbox" name="checkbox" value="on" class="check1"> table 2</td></tr>
+    	
+    	<tr>
+	    	<td>
+	    	<fieldset id = group3>
+	    		<input type="radio" name="group3" value="Grant All" id="radio4"> Grant All
+				<input type="radio" name="group3" value="Selected" id="radio5"> Selected
+			</fieldset>
+			</td>
+    	</tr>
+    	
+    	<tr><td align = "center"><input type="checkbox" name="SELECT" value="on" class="check2"> SELECT</td></tr>
+		<tr><td align = "center"><input type="checkbox" name="INSERT" value="on" class="check2"> INSERT</td></tr>
+		<tr><td align = "center"><input type="checkbox" name="DELETE" value="on" class="check2"> DELETE</td></tr>
+		<tr><td align = "center"><input type="checkbox" name="UPDATE" value="on" class="check2"> UPDATE</td></tr>
+    	
+    	<tr>
+    		<td align = "center"><input type="button" id = "btn" value="Grant" onclick="myFunction();"/></td>
+    	</tr>
+        </table>        
+        </form>
+        <script>
+function myFunction() {
+   var user = document.getElementById("user").value;
+   var password = document.getElementById("pwd").value;
+  // document.write(username)
+  // document.write(password)
+  xhr = new XMLHttpRequest();
+  var url = "http://localhost:8080/Red_Shift1/rest/RedShiftWebServices/GrantPermission";
+  xhr.open("POST", url, true);
+  xhr.setRequestHeader("Content-type", "application/json");
+  xhr.onreadystatechange = Function () 
+  { 
+      if (xhr.readyState == 4 && xhr.status == 200) 
+      {
+         var json = JSON.parse(xhr.responseText);
+         document.write(json.username + ", " + json.password);
+         document.write(json);
+      }
+  }
+  var data = JSON.stringify({"username":username,"password":password});
+  xhr.send(data);
+  document.write(" User "+username+ " Created Successfully ");
+}
+</script>
+                
+</body>
+</html>
+

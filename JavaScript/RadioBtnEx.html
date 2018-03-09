@@ -1,0 +1,21 @@
+<html> 
+<head> 
+<script type="text/javascript"> 
+function disablefield(){ 
+if (document.getElementById('radio3').checked == true){ 
+document.getElementById('txt1').disabled='disabled';
+document.getElementById('txt1').value='';
+}else{ 
+document.getElementById('txt1').disabled=''; 
+} 
+} 
+</script> 
+</head> 
+<body> 
+<form name="aform" > 
+<input type="radio" name="radiobutton" id="radio3" onChange="disablefield();"> Custom Split 
+<input type="radio" name="radiobutton" id="radio4" onChange="disablefield();"> Standard Split 
+<input type="text" name="atext" id="txt1"> 
+</form> 
+</body> 
+</html>

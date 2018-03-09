@@ -1,0 +1,74 @@
+<html>
+<head>
+<title></title>
+<script language="javascript">
+function showEmployee() {
+var userType;
+ if(document.getElementById('radio1').checked){
+     userType = document.getElementById('radio1').value;
+ document.getElementById("result").innerHTML = userType;
+ }else if(document.getElementById('radio2').checked)
+ {
+     userType = document.getElementById('radio2').value;
+     document.getElementById("result").innerHTML = "";
+ }
+ if(userType=="show employees")
+ {
+ var xhttp;
+ var data;
+ var url = "http://localhost:8080/RedShift_UI/rest/test/get";
+ xhttp = new XMLHttpRequest();
+ xhttp.onreadystatechange = function()
+  {
+   if (xhttp.readyState == 4 && xhttp.status == 200) 
+   {
+     document.getElementById("result").innerHTML = xhttp.responseText;
+     data = xhttp.responseText; 
+     createchkboxes();
+   }
+ };
+ xhttp.open("POST", url, true);
+ xhttp.send();
+  }else{
+	 document.getElementById("result").innerHTML = "";
+ }
+ 
+function createchkboxes()
+{
+for (var i = 0; i < 3; i++) {
+               var label = document.createElement('label');
+               var br = document.createElement('br');
+            var alabel = document.getElementById('result1');
+               var last = alabel[alabel.length - 1];
+               label.htmlFor = "lbl"+i;
+               label.appendChild(Createcheckbox(i));
+               label.appendChild(document.createTextNode(data+" "+ i));
+               label.appendChild(br);
+            document.getElementById('result1').appendChild(label);
+                }
+}
+function Createcheckbox(chkboxid) {
+           var checkbox = document.createElement('input');
+           checkbox.type = "checkbox";
+           return checkbox;
+           } 
+
+ }
+</script>
+</head>
+
+<body>
+<form>
+<fieldset id="group1" onclick="showEmployee()">
+            <input type="radio" name="events" value="show employees" id="radio1"> show employees 
+            <input type="radio" name="events" value="hide employees" id="radio2"> hide employees
+</fieldset>
+<div id="result">employee info will be listed here...<br></div>
+<div id="result1"></div>
+</form>
+</body>
+</html>
+
+
+
+

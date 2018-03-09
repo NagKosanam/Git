@@ -1,0 +1,293 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>UbiSoft Admin</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+$('#radio1').change(function() {
+ if($(this).is(":checked"))
+ $(".popup").show();
+ $(".check1").prop('checked', false);
+ $(".check1").attr("disabled", true);
+});
+$('#radio2').change(function() {
+ if($(this).is(":checked"))
+ $(".popup").show();
+ $(".check1").attr("disabled", false);
+ $(".check1").prop('checked', true);
+});
+$('#radio3').change(function() {
+ if($(this).is(":checked"))
+ $(".popup").show();
+ $(".check1").attr("disabled", false);
+ $(".check1").prop('checked', false);
+});
+$('#radio4').change(function() {
+ if($(this).is(":checked")) 
+ $(".popup1").show();
+ $(".check2").prop('checked', true);
+});
+$('#radio5').change(function() {
+ if($(this).is(":checked")) 
+ $(".popup1").show();
+ $(".check2").prop('checked', false);
+});
+});
+
+
+function validate()
+  {
+    var userType;
+    var count=0;
+    var status = false;
+    var userTypeStatus = false;
+    if(document.getElementById('user').checked){
+    userType = document.getElementById('user').value;
+    count++;
+    }else if(document.getElementById('group').checked){
+    userType = document.getElementById('group').value;
+    count++;
+    } 
+    if(count==0){ 
+	document.getElementById('type').innerHTML = "Please select user or group";
+	status = false;
+	userTypeStatus=false;
+	}else{
+	document.getElementById('type').innerHTML = "";
+	status=true;
+	userTypeStatus=true;
+	}
+	
+	var userStatus=false;
+    var username=document.getElementById("mySelect1").value;
+    if(username == "user/group")
+    {
+    document.getElementById('user1').innerHTML = "please select user name";
+    status = false;
+    userStatus = false;
+    }else{
+    document.getElementById('user1').innerHTML = "";
+    status = true;
+    userStatus=true;
+    }
+    
+    var schemaName = document.getElementById("mySelect2").value;
+    var schemaStatus=false;
+    if(schemaName == "SchemaName")
+    {
+    document.getElementById('schema').innerHTML = "please select schema name";
+    status = false;
+    schemaStatus=false;
+    }else{
+    document.getElementById('schema').innerHTML = "";
+    status = true;
+    schemaStatus=true;
+    }    
+   
+	
+    var tableType;
+    var count1=0;
+    var tableTypeStatus=false;
+	if(document.getElementById('radio1').checked){
+    tableType = document.getElementById('radio1').value;
+    count1++;
+	}else if(document.getElementById('radio2').checked){
+    tableType = document.getElementById('radio2').value;
+    count1++;
+	}else if(document.getElementById('radio3').checked){
+    tableType = document.getElementById('radio3').value;
+    count1++;
+   }
+   if(count1==0)
+   {
+   document.getElementById('tabType').innerHTML = "please Select Table Type";
+   status=false;
+   tableTypeStatus=false;
+   }else{  
+	document.getElementById('tabType').innerHTML = "";
+	status=true;
+	tableTypeStatus=true;
+	}
+	
+   var tablelistStatus=false;
+   var all_location_id = document.querySelectorAll('input[name="checkbox"]:checked');
+   var aIds = [];
+   var c1=0;
+	for(var x = 0, l = all_location_id.length; x < l;  x++)
+	{
+    aIds.push(all_location_id[x].value);
+	}
+	var tableList = [aIds];
+	
+	if(tableType=="Selected"){
+      if(tableList==null || tableList=="")
+      {
+         document.getElementById('table-value').innerHTML = "Please select atleast one table";
+         c1=0;
+      }else{
+      document.getElementById('table-value').innerHTML = "";
+      c1++;
+      }
+      if(c1!=0)
+      {
+      tablelistStatus=true;
+      }else{
+      tablelistStatus=false;
+      }
+      status=false;
+   }else{
+      document.getElementById('table-value').innerHTML = "";
+      status = true;
+      tablelistStatus=true;
+   }
+	
+	var permissionTypeStatus=false;
+    var count2=0;
+	if(document.getElementById('radio4').checked){
+    var permissionType = document.getElementById('radio4').value;
+    count2++;
+	}else if(document.getElementById('radio5').checked){
+    permissionType = document.getElementById('radio5').value;
+    count2++;
+	} 
+	if(count2==0)
+	{
+	document.getElementById('permType').innerHTML = "Please select permission Type";
+	status=false;
+	permissionTypeStatus=false;
+	}else{
+	document.getElementById('permType').innerHTML = "";
+	status=true;
+	permissionTypeStatus=true;
+	}
+	
+   var permissionListStatus=false;
+   var all_location_id1 = document.querySelectorAll('input[name="on"]:checked');
+   var aIds1 = [];
+	for(var x = 0, l = all_location_id1.length; x < l;  x++)
+	{
+    aIds1.push(all_location_id1[x].value);
+	}
+	var permissionList = [aIds1];
+	var c=0;
+	if(permissionType=="Selected"){
+      if(permissionList==null || permissionList=="")
+      {
+         document.getElementById('permission-value').innerHTML = "Please select atleast one permission";
+         c=0;
+      }else{
+      document.getElementById('permission-value').innerHTML = "";
+      c++;
+      }
+      if(c!=0){
+      permissionListStatus=true;
+      }else{
+      permissionListStatus=false;
+      }
+   }else{
+      document.getElementById('permission-value').innerHTML = "";
+      status = true;
+      permissionListStatus=true;
+   }
+   
+   if(userTypeStatus==true && userStatus==true && schemaStatus==true && tableTypeStatus==true && tablelistStatus==true && permissionTypeStatus==true && permissionListStatus==true ) {
+	xhr = new XMLHttpRequest();
+	var url = "http://localhost:8080/RedShift_UI/rest/user1/data1";
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json");
+	var data = JSON.stringify({
+	"userType": userType,
+	"username": username,
+	"schemaName": schemaName,
+	"tableType": tableType,
+	"tableList": tableList,
+  	"permissionType": permissionType,
+  	"permissionList":permissionList
+});
+	xhr.send(data);
+	status = true;
+	} else {
+	status = false;
+	}	
+  }
+  
+</script>
+</head>
+<body>
+    <div id="Header">
+    <h1 align = "center">UbiSoft Admin</h1>
+    </div>
+    <form>
+    <table align = "center" width =300 height = 200 bgcolor= lightgray>
+        <tr>
+            <td>
+            <fieldset id = group1>
+                <input type="radio" id = "user" name="group1" value="User"> User
+                <input type="radio" id = "group" name="group1" value="Group"> Group
+            </fieldset>
+            <font color = "red"><span id="type"></span></font>
+            </td>
+        </tr>
+        
+         <tr>
+            <td class = "select"> 
+            <select id="mySelect1">        
+                   <option value="user/group">user/group</option>
+                   <option value="conferra">conferra</option>
+                   <option value="conferrasoft">conferrasoft</option>
+                   <option value="aws">aws</option>
+            </select>
+            <font color = "red"><span id="user1"></span></font>
+            </td>    
+         </tr>
+         
+         <tr>
+            <td class = "select"> 
+            <select id="mySelect2">        
+                   <option value="SchemaName">SchemaName</option>
+                   <option value="games">games</option>
+                   <option value="ncis">ncis</option>
+                   <option value="pop_runner">pop_runner</option>
+            </select>
+            <br><font color = "red"><span id="schema"></span></font>
+            </td>  
+         </tr>
+         
+         <tr>
+            <td>
+            <fieldset id = group2>
+                <input type="radio" name="group2" value="none" id="radio1" > none
+                <input type="radio" name="group2" value="All Tables" id="radio2" > All Tables
+                <input type="radio" name="group2" value="Selected" id="radio3" > Selected
+            </fieldset>
+            <font color = "red"><span id="tabType"></span></font>
+            </td>
+         </tr>
+         
+         <tr class="popup" style="display:none;"><td align = "center"><input type="checkbox" name="checkbox" value="table 1" class="check1" id="check1"> table 1</td></tr>
+         <tr class="popup" style="display:none;"><td align = "center"><input type="checkbox" name="checkbox" value="table 2" class="check1" id="check2"> table 2</td></tr>
+         <tr><td><font color = "red"><span id="table-value"></span><br></font></td></tr>
+     
+         <tr>
+            <td>
+            <fieldset id = group3>
+                <input type="radio" name="group3" value="Grant All" id="radio4" > Grant All
+                <input type="radio" name="group3" value="Selected" id="radio5" > Selected
+                </fieldset>
+                <font color = "red"><span id="permType"></span></font>
+            </td>
+         </tr>
+     
+     <tr class="popup1" style="display:none;"><td align = "center"><input type="checkbox" name="on" value="SELECT" class="check2"> SELECT</td></tr>
+     <tr class="popup1" style="display:none;"><td align = "center"><input type="checkbox" name="on" value="INSERT" class="check2"> INSERT</td></tr>
+     <tr class="popup1" style="display:none;"><td align = "center"><input type="checkbox" name="on" value="DELETE" class="check2"> DELETE</td></tr>
+     <tr class="popup1" style="display:none;"><td align = "center"><input type="checkbox" name="on" value="UPDATE" class="check2"> UPDATE</td></tr>
+     <tr><td><font color = "red"><span id="permission-value"></span><br></font></td><tr>
+     
+     <tr><td align = "center"><input type="button" id = "btn" value="Grant" onclick="validate();"/></td></tr>
+     </table>        
+     </form>		       
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<script language="Javascript">
+
+var array = new Array();
+array.push("foo");
+array.push("bar");
+array.push("test");
+array.push("one");
+
+
+
+
+function createCheckBoxes()
+{
+document.getElementById( 'append' ).innerHTML = "";
+
+for(var i=0; i<array.length; i++) {
+
+var divTag = document.createElement("div");
+divTag.className ="filterCheckBoxes";
+
+
+var cb = document.createElement( "input" );
+cb.type = "checkbox";
+cb.id = "checkBox"+i;
+cb.name = "checkBox";
+cb.checked = true;
+cb.value = array[i];
+
+document.getElementById("append").appendChild(divTag);
+divTag.appendChild(cb);
+divTag.appendChild(document.createTextNode(array[i]));	
+
+
+} 
+}
+
+
+function alertChecked(){
+
+for (var i=0;i<array.length;i++) {
+var checkBoxObject = document.getElementById('checkBox'+i);
+if(checkBoxObject.checked == true)	
+alert(checkBoxObject.value);
+}
+} 
+
+</script>
+</head>
+<body>
+<p>click the button below</p>
+     <div id="append" name="append"></div>
+     <input type="radio" value="createCheckBoxes" onclick="javascript:createCheckBoxes()" />
+     <input type="radio" value="test" onclick="javascript:alertChecked()" />
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<head>
+<script type="text/javascript" >  
+function validate() {  
+var username = document.myForm.username.value;
+var user = username;
+var password = document.myForm.password.value;
+var status = false; 
+var minNumberofChars = 8;
+var maxNumberofChars = 40;
+var regularExpression  = /^(?=.*\d)(?=.*[A-Z])[a-zA-Z0-9]{8,}$/;
+var firstChar = /^[A-Z]/;
+if(username == null || username == "") {
+document.getElementById('mylocation').innerText = "username must not be empty";
+status = false;
+}
+ else { 
+document.getElementById('mylocation').innerText = "";
+status = true;
+}
+if(password == null || password == "") {
+document.getElementById('mylocation1').innerText = "password must not be empty";
+status = false;
+}
+else if(password.length < minNumberofChars || password.length > maxNumberofChars) { 
+document.getElementById('mylocation1').innerText = "Password must be atleast 8 characters long"; 
+status = false;
+}
+else if(!regularExpression.test(password)) {
+document.getElementById('mylocation1').innerText =("Password must start with uppercase letter and contains atleast 1 number");
+status = false;
+}
+else if(!firstChar.test(password)) {
+document.getElementById('mylocation1').innerText = "First letter should be Capital"; 
+status = false;
+}
+else {
+document.getElementById('mylocation1').innerText = ""; 
+status = true;
+}
+if(! == username) {
+document.getElementById('mylocation').innerText = "Username already exist"; 
+ }  
+</script> 
+</head>
+<body> 
+<form name="myForm">
+User name:<input type="text" name ="username">
+<font color = "red"><span id="mylocation"></span></font><br><br> 
+Password:<input type="text" name="password">
+<font color = "red"><span id="mylocation1"></span></font><br>
+<p><font color = "blue">password must start with uppercase letter and contains atleast 1 number!<p>
+<input type="button" value="Create User" onclick="validate();"/>
+
+</form>
+</body>
+</html>

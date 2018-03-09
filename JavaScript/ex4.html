@@ -1,0 +1,83 @@
+<html>
+<head>
+<script type="text/javascript">
+  // hard-coded inside the function.
+  function populate() {
+    var sel1 = document.getElementById("list1")
+    var sel2 = document.getElementById("list2")
+    var sel3 = document.getElementById("list3")
+    var sel4 = document.getElementById("list4")
+    var sel5 = document.getElementById("list5")
+    var result = new Array()
+    if (sel1.options[sel1.selectedIndex].value!="?") {
+      document.write(sel1.options[sel1.selectedIndex].value)
+    }
+    if (sel2.options[sel2.selectedIndex].value!="?") {
+      document.write(sel2.options[sel2.selectedIndex].value)
+    }
+    if (sel3.options[sel3.selectedIndex].value!="?") {
+      document.write(sel3.options[sel3.selectedIndex].value)
+    }
+    if (sel4.options[sel4.selectedIndex].value!="?") {
+      document.write(sel4.options[sel4.selectedIndex].value)
+    }
+    if (sel5.options[sel5.selectedIndex].value!="?") {
+      document.write(sel5.options[sel5.selectedIndex].value)
+    }
+    // populate the selected value into text boxes
+    for (var i=0; i<result.length; i++) {
+      document.getElementById("box"+(i+1)).value = result[i]
+    }
+  }
+</script>
+</head>
+<body>
+Selection 1: <select id="list1">
+  <option value="?">No select</option>
+  <option value="list1Val1">Val1</option>
+  <option value="list1Val2">Val2</option>
+  <option value="list1Val3">Val3</option>
+  <option value="list1Val4">Val4</option>
+</select>
+<br />
+Selection 2: <select id="list2">
+  <option value="?">No select</option>
+  <option value="list2Val1">Val1</option>
+  <option value="list2Val2">Val2</option>
+  <option value="list2Val3">Val3</option>
+  <option value="list2Val4">Val4</option>
+</select>
+<br />
+Selection 3: <select id="list3">
+  <option value="?">No select</option>
+  <option value="list3Val1">Val1</option>
+  <option value="list3Val2">Val2</option>
+  <option value="list3Val3">Val3</option>
+  <option value="list3Val4">Val4</option>
+</select>
+<br />
+Selection 4: <select id="list4">
+  <option value="?">No select</option>
+  <option value="list4Val1">Val1</option>
+  <option value="list4Val2">Val2</option>
+  <option value="list4Val3">Val3</option>
+  <option value="list4Val4">Val4</option>
+</select>
+<br />
+Selection 5: <select id="list5">
+  <option value="?">No select</option>
+  <option value="list5Val1">Val1</option>
+  <option value="list5Val2">Val2</option>
+  <option value="list5Val3">Val3</option>
+  <option value="list5Val4">Val4</option>
+</select>
+<br /><br />
+<input type="button" value="Finish" onclick="populate()">
+<br /><br />
+<input type="text" id="box1" size="10">&nbsp;&nbsp;
+<input type="text" id="box2" size="10">&nbsp;&nbsp;
+<input type="text" id="box3" size="10">&nbsp;&nbsp;
+<input type="text" id="box4" size="10">&nbsp;&nbsp;
+<input type="text" id="box5" size="10">
+</body>
+</html>

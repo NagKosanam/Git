@@ -1,0 +1,255 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+  <title>UbiSoft Admin</title>
+  <script>
+  $(document).ready(function()
+  {
+        $('#radio1').change(function() 
+        {
+             $(".check1").attr("disabled", false);
+             if($(this).is(":checked"))
+                $(".check1").prop('checked', true);
+             else 
+                $(".check1").prop('checked', false);
+        });
+        $('#radio2').change(function()
+        {
+            if($(this).is(":checked"))
+                $(".check1").attr("disabled", false);
+                $(".check1").prop('checked', false);
+        });      
+  });
+  
+  function disablefield()
+  { 
+    if(document.getElementById('radio3').checked == true)
+    { 
+        document.getElementById('txt1').disabled='disabled';
+        document.getElementById('txt1').value="";
+    }else{ 
+        document.getElementById('txt1').disabled=''; 
+    } 
+  } 
+  
+  function validate()
+  {
+    var status = false;
+    var flurrykeyStatus=false;
+    var flurrykey = document.getElementById("mySelect1").value;
+    if(flurrykey == "FlurryKey")
+    {
+        document.getElementById('nag1').innerHTML = "please select flurrykey";
+        status = false;
+        flurrykeyStatus=false;   
+    }else{
+    document.getElementById('nag1').innerHTML = "";
+    status = true;
+    flurrykeyStatus=true;
+    }
+    
+    var schemaStatus=false;
+    var schemaName = document.getElementById("mySelect2").value;
+    if(schemaName == "SchemaName")
+    {
+    document.getElementById('nag2').innerHTML = "please select schema name";
+    status = false;
+    schemaStatus=false;
+    }else{
+    document.getElementById('nag2').innerHTML = "";
+    status = true;
+    schemaStatus=true;
+    }
+    
+    var eventType;
+    var count = 0;
+    var eventTypeStatus=false;
+    if(document.getElementById('radio1').checked){
+       eventType = document.getElementById('radio1').value;
+       count++;
+    }else if(document.getElementById('radio2').checked){
+        eventType = document.getElementById('radio2').value;
+        count++;
+   }  
+   if(count==0){
+        document.getElementById('nag3').innerHTML = "please select Event Type";
+        status = false;
+        eventTypeStatus=false;
+   }else{
+        document.getElementById('nag3').innerHTML = "";
+        status = true;
+        eventTypeStatus=true;
+   }
+      
+ var all_location_id = document.querySelectorAll('input[name="on"]:checked');
+   var aIds = [];
+ for(var x = 0, l = all_location_id.length; x < l;  x++)
+ {
+    aIds.push(all_location_id[x].value);
+ }
+ var eventlist = [aIds];
+ //eventlist = aIds.join(', ');
+ var eventlistStatus = false;
+ var c=0;
+ if(eventType=="Selected"){
+	      if(eventlist==null || eventlist=="")
+	      {
+	         document.getElementById('nag4').innerHTML = "Please select atleast one event";
+	         c=0;
+	      }else{
+	      document.getElementById('nag4').innerHTML = "";
+	      c++;
+	      }
+	      if(c!=0){
+	    		 eventlistStatus = true;
+	    	 } else{
+	    		 eventlistStatus = false;
+	    	 }
+      staus =false;
+   }else{
+      document.getElementById('nag4').innerHTML = eventlist;
+      status = true;
+      eventlistStatus = true;
+   }
+ 
+ 
+ var splitType;
+ var splitTypeStatus=false;
+ var count1=0;
+ if(document.getElementById('radio3').checked){
+       splitType = document.getElementById('radio3').value;
+       count1++;
+    }else if(document.getElementById('radio4').checked){
+        splitType = document.getElementById('radio4').value;
+        count1++;
+   }
+   if(count1==0){
+    document.getElementById('nag5').innerHTML = "please select split type";
+    status = false;
+    var splitTypeStatus=false;
+   }else{ 
+    document.getElementById('nag5').innerHTML = "";
+    status = true;
+    var splitTypeStatus=true;
+   }
+   
+   
+  var splitString = document.getElementById("txt1").value;
+  var splitStringStatus=false;
+  if(splitType == "Standard Split")
+  {
+      splitString="&";
+      document.getElementById("nag6").innerHTML =""; 
+      status = true;
+      splitStringStatus=true;
+  }
+   else if(splitType == "Custom Split")
+   {
+     if(splitString=="null" || splitString=="")
+     {
+     document.getElementById("nag6").innerHTML = "please enter split string";
+     status = false;
+     var splitStringStatus=false;
+     }else{
+     document.getElementById("nag6").innerHTML = ""; 
+     status = true;
+     var splitStringStatus=true;
+     }
+   }
+   
+   if(flurrykeyStatus==true && schemaStatus==true && eventTypeStatus==true && eventlistStatus==true && splitTypeStatus==true && splitStringStatus==true ) {
+	xhr = new XMLHttpRequest();
+	var url = "http://localhost:8080/RedShift_UI/rest/user/data";
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json");
+	var data = JSON.stringify({
+	"flurryKey": flurrykey,
+	"schemaName": schemaName,
+	"eventType": eventType,
+	"eventList": eventlist,
+  	"splitType": splitType,
+  	"splitString":splitString
+});
+	xhr.send(data);
+	status = true;
+	} else {
+	status = false;
+	}
+ }  
+  
+
+ </script>
+</head>
+
+<body>
+  <div id="Header">
+    <h1 align="center">UbiSoft Admin</h1>
+  </div>
+
+  <form id="myForm">
+    <table align="center" width="300" height="200" bgcolor="lightgray">
+      <tr>
+        <td class="select">
+        <select id="mySelect1">
+          <option value="FlurryKey">FlurryKey</option>
+          <option value="D35DQZJH6V45ZGPCTB44">D35DQZJH6V45ZGPCTB44</option>
+        </select>
+        <br><font color = "red"><span id="nag1"></span></font><br>
+        </td>
+      </tr>
+       
+      <tr>
+        <td class="select">
+        <select id="mySelect2">
+          <option value="SchemaName">SchemaName</option>
+          <option value="games"> games</option>
+          <option value="ncis">ncis</option>
+          <option value="pop_runner">pop_runner</option>
+        </select>
+        <font color = "red"><span id="nag2"></span></font><br>
+        </td>
+      </tr>
+      
+      <tr>
+        <td>
+          <fieldset id="group1">
+            <input type="radio" name="events" value="All Events" id="radio1"> All Events 
+            <input type="radio" name="events" value="Selected" id="radio2"> Selected
+          </fieldset>
+          <font color = "red"><span id="nag3"></span></font><br>
+        </td>
+      </tr>
+
+      <tr><td align="center"><input type="checkbox" name="on" value="Event1" class="check1"> Event 1</td></tr>
+      <tr><td align="center"><input type="checkbox" name="on" value="Event2" class="check1"> Event 2</td></tr>
+      <tr><td align="center"><input type="checkbox" name="on" value="Event3" class="check1"> Event 3</td></tr>
+      <tr><td align="center"><input type="checkbox" name="on" value="Event4" class="check1"> Event 4</td></tr>
+      <tr><td><font color = "red"><span id="nag4"></span><br></font></td></tr>
+
+      <tr>
+        <td>
+          <fieldset id="group2">
+            <input type="radio" name="group2" value="Standard Split" id="radio3" onChange="disablefield();"> Standard Split 
+            <input type="radio" name="group2" value="Custom Split" id="radio4" onChange="disablefield();"> Custom Split
+          </fieldset>
+          <font color = "red"><span id="nag5"></span></font><br>
+        </td>
+      </tr>
+
+      <tr>
+        <td align="right">Enter Split String:<input type="text" id="txt1">
+        <font color = "red"><span id="nag6"></span></font><br>
+        </td>
+      </tr>
+
+      <tr>
+        <td align="center"><input type="button" value="Create View" onclick="validate();"></input></td>
+      </tr>
+    </table>
+  </form>
+</body>
+</html>

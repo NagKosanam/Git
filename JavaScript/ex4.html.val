@@ -1,0 +1,500 @@
+
+--------------------------------------------------
+
+CSE HTML Validator Professional v16.04 (Unregistered)
+Checking "D:\JavaScript\ex4.html" (2884 characters).
+File date is 11 August 2016 at PM 05:08:35.
+File checked on 12 August 2016 at AM 09:50:22.
+
+*** EVALUATION COPY *** EVALUATION COPY *** EVALUATION COPY ***
+
+     Number of lines checked: 54 in 0.00 seconds
+ Number of lines in document: 83 (65.1% of lines checked)
+     Number of lines ignored: 29
+Number of character entities: 8
+        Number of start tags: 48
+          Number of end tags: 34 (70.8% of start tags with end tags)
+Number of <% ... %> sections: 0
+     Number of HTML comments: 0
+
+Number of validator comments: 17
+          Number of messages: 13
+            Number of errors: 0
+          Number of warnings: 5 (first in line 1)
+
+--------------------------------------------------
+
+   1: <html>
+------|
+
+[CSE] Warning number 1 in line 1:1:
+[24] A document type declaration should appear as the first
+line (line 1) of every HTML document. For example, for HTML5
+documents use <!DOCTYPE html>. For HTML 4.01 Strict
+documents use <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML
+4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">. For HTML
+4.01 Transitional documents, use <!DOCTYPE HTML PUBLIC
+"-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">. Although HTML
+recommendations generally require this line, most browsers
+probably ignore it. If you're using HTML Validator's
+integrated editor, then this can be added from the 'Tags'
+menu or from the HTML Inserter.
+
+   1: <html>
+------|
+
+[CSE] Warning number 2 in line 1:1:
+Not using a DOCTYPE will likely trigger quirks mode in
+browsers. If possible, quirks mode should be avoided in
+favor of standards mode. Visit
+http://en.wikipedia.org/wiki/Quirks_mode for more
+information about quirks mode. Note that the recommended
+DOCTYPE to use now is HTML5, which is simply <!DOCTYPE
+html>.
+
+   1: <html>
+-------||||
+
+[CSE] Warning number 3 in line 1:2:
+The natural primary language is not specified. It is highly
+recommended that the "lang" and/or "xml:lang" (for XHTML)
+attributes be used with the "html" element to specify the
+primary language. For example, add the attribute lang="en"
+for English or lang="fr" for French. Specifying the language
+assists braille translation software, speech synthesizers,
+translation software, and has other benefits.
+
+   2: <head>
+-------||||
+
+[CSE] Warning number 4 in line 2:2:
+[32] No title was found. In most situations, the document
+should be given a title by using the "title" element in the
+document's "head" section. HTML 4.01 and XHTML require
+exactly one "title" element for each document. Note that
+HTML5+ allows the "title" element to be omitted when the
+title is provided by a higher-level protocol, like the
+subject line of an e-mail message when HTML is used as the
+email format, or when the document is an "iframe srcdoc"
+document.
+
+   2: <head>
+-------||||
+
+[CSE] Warning number 5 in line 2:2:
+No title was found in this "head" section. Each page on a
+site should have its own unique (never duplicated) title.
+Every title should contain appropriate keywords and search
+terms that are relevant to the page. Don't just stuff
+keywords in the title. The first words in the title are more
+likely to result in higher rankings than subsequent words,
+so use important keywords at the very beginning when
+reasonable. The title should also be something that a user
+will want to click on when it's listed on a search engine. A
+good title is also important when a visitor bookmarks a
+page.
+
+   2: <head>
+-------||||
+
+[CSE] Message number 1 in line 2:2:
+A meta tag specifying the charset encoding was not found
+within this document's "head" section. This could pose a
+problem if the document is served locally or not served via
+HTTP with an HTTP header that specifies the encoding.
+Consider specifying the encoding in a meta tag. An example
+"meta" tag for HTML5 documents is (if possible, place this
+immediately after the "head" start-tag): <meta
+charset="utf-8">
+
+   3: <script type="text/javascript">
+-------||||||
+
+[CSE] Message number 2 in line 3:2:
+Avoid placing scripts (especially longer ones) in the head
+section if possible. Doing this can make the page seem
+slower to load because the browser must pause to download
+(if using the "src" attribute) and run the script. Also, DOM
+content is not loaded yet so it is not available to the
+script. In most cases it's best to place scripts right
+before the </body> end tag. This message is displayed only
+once.
+
+   3: <script type="text/javascript">
+--------------------|||||||||||||||
+
+[CSE] Message number 3 in line 3:15:
+Although "text/javascript" is not technically correct, it is
+widely supported and is therefore recommended. The
+technically correct Internet media type (MIME type)
+"application/javascript" is not as widely supported (IE8
+does not recognize it), but some may want to consider
+configuring their server to serve JavaScript files with the
+technically correct media type while still using
+text="text/javascript" with "script" elements. This message
+is displayed only once.
+
+   4:   // hard-coded inside the function.
+--------|||||||||||||||||||||||||||||||||||
+
+[CSE] Message number 4 in line 4:3:
+If possible, keep scripts in separate files and avoid
+embedding scripts directly in pages (inline scripts).
+Instead, use the "src" attribute to specify an external
+script document. Using external script documents is better
+style and also has other benefits. This message is displayed
+only once.
+
+   5:   function populate() {
+   6:     var sel1 = document.getElementById("list1")
+   7:     var sel2 = document.getElementById("list2")
+   8:     var sel3 = document.getElementById("list3")
+   9:     var sel4 = document.getElementById("list4")
+  10:     var sel5 = document.getElementById("list5")
+  11:     var result = new Array()
+  12:     if (sel1.options[sel1.selectedIndex].value!="?") {
+  13:       document.write(sel1.options[sel1.selectedIndex].value)
+  14:     }
+  15:     if (sel2.options[sel2.selectedIndex].value!="?") {
+  16:       document.write(sel2.options[sel2.selectedIndex].value)
+  17:     }
+  18:     if (sel3.options[sel3.selectedIndex].value!="?") {
+  19:       document.write(sel3.options[sel3.selectedIndex].value)
+  20:     }
+  21:     if (sel4.options[sel4.selectedIndex].value!="?") {
+  22:       document.write(sel4.options[sel4.selectedIndex].value)
+  23:     }
+  24:     if (sel5.options[sel5.selectedIndex].value!="?") {
+  25:       document.write(sel5.options[sel5.selectedIndex].value)
+  26:     }
+  27:     // populate the selected value into text boxes
+  28:     for (var i=0; i<result.length; i++) {
+  29:       document.getElementById("box"+(i+1)).value = result[i]
+  30:     }
+  31:   }
+  32: </script>
+  33: </head>
+  34: <body>
+
+  35: Selection 1: <select id="list1">
+--------------------||||||
+
+[CSE] Message number 5 in line 35:15:
+No option in this "select" element was selected using the
+"selected" attribute. Because browsers behave differently,
+it is recommended that an "option" element use the
+"selected" attribute to explicitly specify a default
+pre-selected option.
+
+  36:   <option value="?">No select</option>
+  37:   <option value="list1Val1">Val1</option>
+  38:   <option value="list1Val2">Val2</option>
+  39:   <option value="list1Val3">Val3</option>
+  40:   <option value="list1Val4">Val4</option>
+  41: </select>
+
+  42: <br />
+-------||
+
+[CSE] Message number 6 in line 42:2:
+Ensure that the "br" element is used only for line breaks
+that are actually part of the content, as in poems or
+addresses. For presentational formatting, CSS should be
+used. This message is displayed only once.
+
+  43: Selection 2: <select id="list2">
+--------------------||||||
+
+[CSE] Message number 7 in line 43:15:
+No option in this "select" element was selected using the
+"selected" attribute. Because browsers behave differently,
+it is recommended that an "option" element use the
+"selected" attribute to explicitly specify a default
+pre-selected option.
+
+  44:   <option value="?">No select</option>
+  45:   <option value="list2Val1">Val1</option>
+  46:   <option value="list2Val2">Val2</option>
+  47:   <option value="list2Val3">Val3</option>
+  48:   <option value="list2Val4">Val4</option>
+  49: </select>
+  50: <br />
+
+  51: Selection 3: <select id="list3">
+--------------------||||||
+
+[CSE] Message number 8 in line 51:15:
+No option in this "select" element was selected using the
+"selected" attribute. Because browsers behave differently,
+it is recommended that an "option" element use the
+"selected" attribute to explicitly specify a default
+pre-selected option.
+
+  52:   <option value="?">No select</option>
+  53:   <option value="list3Val1">Val1</option>
+  54:   <option value="list3Val2">Val2</option>
+  55:   <option value="list3Val3">Val3</option>
+  56:   <option value="list3Val4">Val4</option>
+  57: </select>
+  58: <br />
+
+  59: Selection 4: <select id="list4">
+--------------------||||||
+
+[CSE] Message number 9 in line 59:15:
+No option in this "select" element was selected using the
+"selected" attribute. Because browsers behave differently,
+it is recommended that an "option" element use the
+"selected" attribute to explicitly specify a default
+pre-selected option.
+
+  60:   <option value="?">No select</option>
+  61:   <option value="list4Val1">Val1</option>
+  62:   <option value="list4Val2">Val2</option>
+  63:   <option value="list4Val3">Val3</option>
+  64:   <option value="list4Val4">Val4</option>
+  65: </select>
+  66: <br />
+
+  67: Selection 5: <select id="list5">
+--------------------||||||
+
+[CSE] Message number 10 in line 67:15:
+No option in this "select" element was selected using the
+"selected" attribute. Because browsers behave differently,
+it is recommended that an "option" element use the
+"selected" attribute to explicitly specify a default
+pre-selected option.
+
+  68:   <option value="?">No select</option>
+  69:   <option value="list5Val1">Val1</option>
+  70:   <option value="list5Val2">Val2</option>
+  71:   <option value="list5Val3">Val3</option>
+  72:   <option value="list5Val4">Val4</option>
+  73: </select>
+  74: <br /><br />
+  75: <input type="button" value="Finish" onclick="populate()">
+  76: <br /><br />
+
+  77: <input type="text" id="box1" size="10">&nbsp;&nbsp;
+-------|||||
+
+[CSE] Message number 11 in line 77:2:
+Consider using the "inputmode" attribute on "textarea" and
+"input" elements (where type="text" or type="search") to
+specify a default text entry mode. This message is displayed
+up to 3 times.
+
+  78: <input type="text" id="box2" size="10">&nbsp;&nbsp;
+-------|||||
+
+[CSE] Message number 12 in line 78:2:
+Consider using the "inputmode" attribute on "textarea" and
+"input" elements (where type="text" or type="search") to
+specify a default text entry mode. This message is displayed
+up to 3 times.
+
+  79: <input type="text" id="box3" size="10">&nbsp;&nbsp;
+-------|||||
+
+[CSE] Message number 13 in line 79:2:
+Consider using the "inputmode" attribute on "textarea" and
+"input" elements (where type="text" or type="search") to
+specify a default text entry mode. This message is displayed
+up to 3 times.
+
+  80: <input type="text" id="box4" size="10">&nbsp;&nbsp;
+  81: <input type="text" id="box5" size="10">
+  82: </body>
+  83: </html>
+
+[CSE] Comment number 1:
+Beginner mode is on. This mode may reduce the number of
+validator messages and make other changes to make this
+program easier to use, but less powerful. To toggle this
+mode, please choose 'Options->Beginner Mode' in the editor.
+See the getting started documentation (Help->Getting
+Started) for more information.
+
+[CSE] Comment number 2:
+[73] Section 508 accessibility checking is off.
+
+[CSE] Comment number 3:
+[73] WCAG 1.0 accessibility checking is off.
+
+[CSE] Comment number 4:
+[73] WCAG 2.0 accessibility checking is off.
+
+[CSE] Comment number 5:
+Accessibility checking is off. This program can help you
+make your web pages more accessible. An accessible page is
+one that more individuals can use, such as individuals who
+are blind or deaf. It can also increase the usefulness of
+your web page for individuals who browse the web using
+slower devices like older computers or wireless devices like
+mobile phones and PDAs. An accessible web site makes good
+business sense (and possibly good legal sense as well) and
+may even improve search engine rankings. You can enable or
+disable accessibility checking in the Validator Engine
+Options.
+
+[CSE] Comment number 6:
+This is an unregistered, evaluation version of CSE HTML
+Validator Professional which has validated 105 documents.
+Please note that only 95 more documents can be validated
+before the evaluation expires.
+
+[CSE] Comment number 7:
+Keyword density: select (5x - 12.5%), Selection (5x -
+12.5%), Val1 (5x - 12.5%), Val2 (5x - 12.5%), Val3 (5x -
+12.5%), Val4 (5x - 12.5%), 1 (1x - 2.5%), 2 (1x - 2.5%), 3
+(1x - 2.5%), 4 (1x - 2.5%), 5 (1x - 2.5%). Remember: Don't
+write SEO optimized content. Write for people, which is what
+search engines want. Complete list. 5 words excluded.
+
+[CSE] Comment number 8:
+HTML document detected.
+
+[CSE] Comment number 9:
+[133] Mobility Tip #10 - Avoid fixed widths and absolute
+units (like "px") in favor of relative widths (like percents
+and "em") wherever possible.
+
+[CSE] Comment number 10:
+<meta name="description" content="(actual description)">
+should be used in the "head" section to provide a brief
+description of what is contained on this page. Although
+descriptions may not be used directly for rankings, search
+engines may display descriptions in search results, with
+bolding of the relevent keywords. Therefore, a good
+description can help boost click-through rates and thus
+increase traffic to a website. If you're using HTML
+Validator's integrated editor, then this can be added from
+the 'Tags' menu or from the HTML Inserter.
+
+[CSE] Comment number 11:
+Consider using <meta name="keywords" content="(actual
+keyword list)"> in the "head" section to provide a list of
+keywords that are relevant to this page. This information is
+still being used by a few (less popular) search engines, so
+it may bring a few extra visitors to your site. However, we
+recommend that you not spend too much time on it. If you're
+using HTML Validator's integrated editor, then this can be
+added from the 'Tags' menu or from the HTML Inserter.
+
+[CSE] Comment number 12:
+No "h1" or "h2" heading element was found. Using these
+heading elments (especially "h1" and preferably with your
+best keywords) to describe sub-topics of a page may improve
+search engine rankings. If "h1" text is too large then you
+can reduce its size with CSS.
+
+[CSE] Comment number 13:
+No italicizing, emphasizing, bolding, or strong tags were
+used. Emphasizing or italicizing keywords (with the "em"
+element) may improve rankings. Similarly, using strong text
+or bolding keywords (with the "strong" element) may also
+improve rankings.
+
+[CSE] Comment number 14:
+[113] Random Search Engine Tip #12 - USE THE "TITLE"
+ATTRIBUTE. Many elements support the "title" attribute that
+is used for annotation (do not confuse the "title" element
+with the "title" attribute). Consider annotating tags like
+"a" with something like title="Read about <keywords>".
+Annotate with keywords and search terms. Some browsers, like
+Firefox, will also display the value of the "title"
+attribute when the user hovers the mouse over content with a
+"title" attribute.
+
+[CSE] Comment number 15:
+[10] CSE HTML Validator (standard or higher) allows you to
+disable certain messages (like this example message) and
+groups of related messages by disabling flags. For example,
+the [10] at the beginning of this message indicates that
+this message can be disabled by disabling validator flag 10.
+If you are using HTML Validator's integrated editor, then
+you can use your mouse on this message to open the context
+menu (usually done by right-clicking the mouse on this
+message) and selecting 'Message Options->Disable Flag 10' to
+disable this message. For more information about disabling
+messages, see the 'Disabling Validator Messages' topic in
+the documentation.
+
+[CSE] Comment number 16:
+CSE HTML Validator (standard or higher) allows you to
+disable many messages on an individual basis without using
+flags. For instance, you can disable this message by using
+HTML Validator's integrated editor to open the context menu
+for this message (usually done by right-clicking the mouse
+on this message) and selecting 'Message Options->Disable
+using Message ID' or 'Message Options->Disable using Exact
+Text Match' to disable this message. For more information
+about disabling messages, see the 'Disabling Validator
+Messages' topic in the documentation.
+
+[CSE] Comment number 17:
+0.17s, 0 errors, 5 warnings, 13 messages, 17 validator
+comments, 83 lines, 48 elements (with 34 end tags), 0
+document comments, 8 character references, 40 words spell
+checked (0 in comments).
+
+--------------------------------------------------
+
+<html> (1)
+| <head> (2)
+| | <script> (3) </script> (32)
+| </head> (33)
+| <body> (34)
+| | <select> (35)
+| | | <option> (36) </option> (36)
+| | | <option> (37) </option> (37)
+| | | <option> (38) </option> (38)
+| | | <option> (39) </option> (39)
+| | | <option> (40) </option> (40)
+| | </select> (41)
+| | <br /> (42)
+| | <select> (43)
+| | | <option> (44) </option> (44)
+| | | <option> (45) </option> (45)
+| | | <option> (46) </option> (46)
+| | | <option> (47) </option> (47)
+| | | <option> (48) </option> (48)
+| | </select> (49)
+| | <br /> (50)
+| | <select> (51)
+| | | <option> (52) </option> (52)
+| | | <option> (53) </option> (53)
+| | | <option> (54) </option> (54)
+| | | <option> (55) </option> (55)
+| | | <option> (56) </option> (56)
+| | </select> (57)
+| | <br /> (58)
+| | <select> (59)
+| | | <option> (60) </option> (60)
+| | | <option> (61) </option> (61)
+| | | <option> (62) </option> (62)
+| | | <option> (63) </option> (63)
+| | | <option> (64) </option> (64)
+| | </select> (65)
+| | <br /> (66)
+| | <select> (67)
+| | | <option> (68) </option> (68)
+| | | <option> (69) </option> (69)
+| | | <option> (70) </option> (70)
+| | | <option> (71) </option> (71)
+| | | <option> (72) </option> (72)
+| | </select> (73)
+| | <br /> (74)
+| | <br /> (74)
+| | <input /> (75)
+| | <br /> (76)
+| | <br /> (76)
+| | <input /> (77)
+| | <input /> (78)
+| | <input /> (79)
+| | <input /> (80)
+| | <input /> (81)
+| </body> (82)
+</html> (83)

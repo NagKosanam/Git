@@ -1,0 +1,27 @@
+<html>
+<head>
+<script>
+    function getData(){
+        var employee = new Object();
+        employee.id=101
+        employee.name="Nag"
+        employee.Addr="Hyd"
+        alert(employee.id+" "+employee.name+" "+employee.Addr);
+        var str = "hello world";
+        document.write(str.charAt(10));
+        var today = new Date();
+        document.write(today);
+        var v= confirm("Are u male?");  
+        if(v==true){  
+        alert("ok");  
+        }  
+        else{  
+        alert("cancel")
+        }  
+        open("http://www.javatpoint.com"); 
+    }
+</script>
+<body>
+    <input type = "button" onclick = "getData()" value = "submit" />
+</body>
+</html>
