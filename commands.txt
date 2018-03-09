@@ -1,0 +1,58 @@
+EncryptAndUpload :
+
+aws-java-sdk-1.10.73.jar: 
+com.mysql.jdbc_5.1.5.jar:  
+commons-cli-2.0.jar: 
+commons-logging-1.1.3.jar:
+httpclient-4.3.6.jar:
+httpcore-4.3.3.jar:
+jackson-annotations-2.5.0.jar:
+jackson-core-2.5.3.jar:
+jackson-databind-2.5.3.jar:
+joda-time-2.8.1.jar:
+org.json.jar
+jsoup-1.10.1.jar
+
+windows:
+
+compile:
+
+javac -cp aws-java-sdk-1.10.73.jar;com.mysql.jdbc_5.1.5.jar;commons-cli-2.0.jar;commons-logging-1.1.3.jar;httpclient-4.3.6.jar;httpcore-4.3.3.jar;jackson-annotations-2.5.0.jar;jackson-core-2.5.3.jar;jackson-databind-2.5.3.jar;joda-time-2.8.1.jar;org.json.jar -d . *.java
+
+Run:
+
+java -cp aws-java-sdk-1.10.73.jar;com.mysql.jdbc_5.1.5.jar;commons-cli-2.0.jar;commons-logging-1.1.3.jar;httpclient-4.3.6.jar;httpcore-4.3.3.jar;jackson-annotations-2.5.0.jar;jackson-core-2.5.3.jar;jackson-databind-2.5.3.jar;joda-time-2.8.1.jar;org.json.jar; conferra.EncryptAndUploadS3 -l english
+
+
+Linux:
+
+compile:
+
+javac -cp aws-java-sdk-1.10.73.jar:com.mysql.jdbc_5.1.5.jar:commons-cli-2.0.jar:commons-logging-1.1.3.jar:httpclient-4.3.6.jar:httpcore-4.3.3.jar:jackson-annotations-2.5.0.jar:jackson-core-2.5.3.jar:jackson-databind-2.5.3.jar:joda-time-2.8.1.jar:org.json.jar -d . *.java
+
+run:
+
+java -cp aws-java-sdk-1.10.73.jar:com.mysql.jdbc_5.1.5.jar:commons-cli-2.0.jar:commons-logging-1.1.3.jar:httpclient-4.3.6.jar:httpcore-4.3.3.jar:jackson-annotations-2.5.0.jar:jackson-core-2.5.3.jar:jackson-databind-2.5.3.jar:joda-time-2.8.1.jar:org.json.jar:conferra.EncryptAndUploadS3 -l english 
+
+
+
+
+
+MoviesDataBase :
+
+commons-cli-2.0.jar:
+jsoup-1.10.1.jar:
+com.mysql.jdbc_5.1.5.jar:
+
+Windows:
+
+Compile:  javac -cp commons-cli-2.0.jar;jsoup-1.10.1.jar;com.mysql.jdbc_5.1.5.jar -d . *.java
+
+Run:  java -cp commons-cli-2.0.jar;jsoup-1.10.1.jar;com.mysql.jdbc_5.1.5.jar; conferra.FetchNowRunningMovies -l telugu
+
+Linux:
+
+compile:  javac -cp commons-cli-2.0.jar:jsoup-1.10.1.jar:com.mysql.jdbc_5.1.5.jar -d . *.java
+
+Run:  java -cp commons-cli-2.0.jar:jsoup-1.10.1.jar:com.mysql.jdbc_5.1.5.jar: conferra.FetchNowRunningMovies -l telugu
+	
